@@ -1,11 +1,3 @@
-FROM node:10
-
-WORKDIR /usr/src/app/frontend
-
-COPY package*.json ./
-
-RUN npm install
-
-EXPOSE 8080
-
-CMD ["npm", "run", "serve"]
+FROM nginx:alpine
+COPY dist/frontend/ /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf

@@ -1,18 +1,14 @@
-version: '3'
+version: "3"
+
 services:
-  nodejs-server:
-    build: ./backend
+  backendserver:
+    build: ./backend/
     ports:
-      - "3080:3080"
-    container_name: node-api
-    volumes:
-       - ./backend:/usr/src/app/backend
-       - /usr/src/app/backend/node_modules
-  vue-ui:
-    build: ./frontend
-    ports:
-      - "8080:8080"
-    container_name: vue-ui
-    volumes:
-       - ./frontend:/usr/src/app/frontend
-       - /usr/src/app/frontend/node_modules
+    - "8080:8080"
+  restart: always
+  frontend:
+  build: ./frontend/
+  depends_on:
+    - "backendserver"
+  ports:
+    - "80:80"
