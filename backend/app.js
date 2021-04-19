@@ -6,16 +6,16 @@ let transporter = nodemailer.createTransport({
     secure: false,
     auth: {
         user: "sulist.tarefas@gmail.com",
-        pass: ""
+        pass: "S#taref987"
     },
 });
 
 transporter.sendMail({
     from: "Sulist <sulist.tarefas@gmail.com>",
     to: "sulist.tarefas@gmail.com",
-    subject: "Olá, vem conferir suas tarefas",
+    subject: "SuList ✔ Olá, vem conferir suas tarefas",
     text: "Opa! Você não tem tarefas cadastradas",
-    html: "Opa! Você não tem tarefas cadastradas, vem com a gente cadastrar novas tarefas!!"
+    html: "<b>Opa!</p> Você não tem tarefas cadastradas, vem com a gente cadastrar novas tarefas!!"
 }).then(message => {
     console.log(message);
 }).catch(err => {
