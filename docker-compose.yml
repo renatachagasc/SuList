@@ -1,14 +1,15 @@
 version: "3"
 
 services:
-  backendserver:
-    build: ./backend/
+  backend:
+    build: ./backend
+    command: npm start
     ports:
-    - "8080:8080"
-  restart: always
+      - "4200:4200"
+    restart: always    
   frontend:
-  build: ./frontend/
-  depends_on:
-    - "backendserver"
-  ports:
-    - "80:80"
+    build: ./frontend
+    depends_on:
+      - "backend"
+    ports:
+      - "8080:8080"

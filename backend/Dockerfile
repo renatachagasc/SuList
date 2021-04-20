@@ -1,11 +1,13 @@
-FROM node:10
+FROM node:alpine
 
-WORKDIR /usr/src/app/backend
+WORKDIR /usr/app/
 
 COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3080
+COPY . .
 
-CMD ["npm", "run", "dev"]
+EXPOSE 4200
+
+CMD ["npm", "start"]

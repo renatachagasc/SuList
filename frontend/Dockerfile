@@ -1,9 +1,15 @@
 FROM node:latest as build-stage
+
 WORKDIR /frontend
+
 COPY package*.json ./
+
 RUN npm install
+
 COPY ./ .
+
 RUN npm run build
+RUN npm run dev
 
 FROM nginx as production-stage
 RUN mkdir /frontend
