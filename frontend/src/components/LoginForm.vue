@@ -1,0 +1,114 @@
+<template>
+  <!-- Container do formulário de login -->
+  <div class="login-container">
+    <!-- Formulário de login -->
+    <form @submit.prevent="login" class="login-form">
+      <!-- Campo de usuário -->
+      <div class="form-group">
+        <label for="username" class="label">Usuário:</label>
+        <input type="text" id="username" v-model="username" class="input">
+      </div>
+      <!-- Campo de senha -->
+      <div class="form-group">
+        <label for="password" class="label">Senha:</label>
+        <input type="password" id="password" v-model="password" class="input">
+      </div>
+      <!-- Botão de login -->
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+    <!-- Mensagem de erro -->
+    <p v-if="error" class="error-message">{{ error }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  // Dados do componente
+  data() {
+    return {
+      username: '', // Nome de usuário
+      password: '', // Senha
+      error: ''     // Mensagem de erro
+    };
+  },
+  // Métodos do componente
+  methods: {
+    // Método para realizar o login
+    login() {
+      // Lógica de autenticação (simulada)
+      if (this.username === 'admin' && this.password === 'admin') {
+        // Credenciais válidas, redirecionar para a rota '/sulist'
+        this.$router.push('/sulist');
+      } else {
+        // Credenciais inválidas, exibir mensagem de erro
+        this.error = 'Usuário ou senha incorretos';
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+/* Estilos específicos do componente */
+.login-container {
+  background-color: #00C699;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  background-color: #fff;
+  width: 300px;
+  max-width: 100%;
+  padding: 60px 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #00d1b2;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #F14975;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #f7cd34;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+</style>
