@@ -81,7 +81,7 @@ export default {
       // Obtém a lista de tarefas do componente TodoCard
       const listaDeTarefas = this.$refs.todoCard.tarefas;
       // Envia a lista de tarefas para o servidor
-      fetch('http://localhost:4200/email', {
+      fetch('http://localhost:4200/api/email/send-list', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

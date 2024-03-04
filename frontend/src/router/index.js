@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue'; // Importa o componente Home.vue da pasta v
 import Login from '@/views/Login.vue'; // Importa o componente Login.vue da pasta views
 import Sulist from '@/views/Sulist.vue'; // Importa o componente Sulist.vue da pasta views
 import App from '@/App.vue'; // Importa o componente App.vue
+import Cadastro from '@/views/Cadastro.vue'; 
 
 Vue.use(VueRouter); // Instala o Vue Router
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/cadastro',
+    name: 'Cadastro',
+    component: Cadastro
   },
   {
     path: '/app',

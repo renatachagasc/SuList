@@ -5,8 +5,8 @@
     <form @submit.prevent="login" class="login-form">
       <!-- Campo de usuário -->
       <div class="form-group">
-        <label for="username" class="label">Usuário:</label>
-        <input type="text" id="username" v-model="username" class="input">
+        <label for="email" class="label">Usuário:</label>
+        <input type="text" id="email" v-model="email" class="input">
       </div>
       <!-- Campo de senha -->
       <div class="form-group">
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+import { ToastProgrammatic as Toast } from 'buefy';
+
 export default {
   // Dados do componente
   data() {
     return {
-      username: '', // Nome de usuário
+      email: '', // Nome de usuário
       password: '', // Senha
       error: ''     // Mensagem de erro
     };
@@ -35,14 +37,44 @@ export default {
   methods: {
     // Método para realizar o login
     login() {
-      // Lógica de autenticação (simulada)
-      if (this.username === 'admin' && this.password === 'admin') {
-        // Credenciais válidas, redirecionar para a rota '/sulist'
+      fetch('http://localhost:4200/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Erro ao fazer login do usuário');
+        }
+      })
+      .then(data => {
+        console.log('Resposta do servidor:', data);
+        // Limpe os campos do formulário após o envio bem-sucedido
+        this.email = '';
+        this.password = '';
+        Toast.open({
+            message: 'Login com sucesso!',
+            type: 'is-success'
+          });
+        // Se a autenticação for bem-sucedida, redirecione para a página principal
         this.$router.push('/sulist');
-      } else {
-        // Credenciais inválidas, exibir mensagem de erro
-        this.error = 'Usuário ou senha incorretos';
-      }
+      })
+      .catch(error => {
+        Toast.open({
+            message: 'Erro ao fazer login',
+            type: 'is-danger'
+          });
+        console.error('Erro ao fazer login:', error);
+        // Trate o erro e exiba uma mensagem de erro para o usuário
+        this.error = 'Usuário ou senha incorretos.';
+      });
     }
   }
 };

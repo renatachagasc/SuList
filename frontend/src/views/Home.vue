@@ -7,7 +7,11 @@
       <img src="@/assets/sulist-logo.png" alt="Logo do SuList" class="logo-img">
       <!-- Botão para acessar a conta -->
       <div class="btn-acessar">
-        <router-link to="/login" class="login-link">Acessar conta</router-link>
+        <router-link to="/login" class="btn-link">Acessar conta</router-link>
+      </div>
+      <!-- Botão para cadastrar a conta -->
+      <div class="btn-cadastrar">
+        <router-link to="/cadastro" class="btn-link">Cadastra uma conta</router-link>
       </div>
     </div>
     <!-- Coluna direita -->
@@ -17,14 +21,14 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 export default {
   // Nome do componente
   name: 'home',
 };
 </script>
-  
+
 <style>
 /* Estilos específicos do componente */
 
@@ -58,7 +62,12 @@ export default {
   margin-left: 35px;
 }
 
-.login-link {
+.btn-cadastrar {
+  margin-left: 35px;
+  margin-top: 20px;
+}
+
+.btn-link {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #F14975;
@@ -68,7 +77,7 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.login-link:hover {
+.btn-link:hover {
   background-color: #f7cd34;
 }
 
